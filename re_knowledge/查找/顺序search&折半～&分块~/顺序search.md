@@ -8,8 +8,8 @@
 
 - 又称<span style="color: orange;">线性</span><span style="color: Gold;">search</span>
 - 适用范围：
-  - <span style="color: LightSkyBlue;">顺序</span>表：通过数组下标递增扫描
-  - <span style="color: RoyalBlue;">链</span>表：通过指针next扫描
+  - <span style="color: LightSkyBlue;">顺序</span>表：通过 <u>数组下标</u> 递增扫描
+  - <span style="color: RoyalBlue;">链</span>表：通过 <u>指针next</u> 扫描
 
 </ul>
 
@@ -37,7 +37,7 @@ typedef struct{
     int TableLen;
 }SSTable;
 
-int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
+int search_Seq(SSTable ST,ElemType key){
     ST.elem[0]=key;
     for(int i=ST.TableLen;ST.elem[i]!=key;--i);
     return i;
@@ -107,7 +107,7 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 #### <span style="color: silver;">attention
 
 - 思想与<span style="color: Gold;">折</span><span style="color: gray;">半</span><span style="color: Gold;">search</span>不同
-  - <span style="color: RoyalBlue;">链</span>式存储结构
+  - could have <span style="color: RoyalBlue;">链</span>式存储结构
   - 折半~only<span style="color: LightSkyBlue;">顺序</span>存储结构
 
 </ul>
@@ -121,6 +121,9 @@ int <span style="color: Gold;">search</span>_Seq(SSTable ST,ElemType key){
 
 </div>
 <div style="float: right; width: 26%; padding: 1%;">
+
+
+![2-210R0143451633](https://bluejedis.github.io/picx-images-hosting/ds/2-210R0143451633.3golp8087p.gif)
 
 </div>
 <div style="clear: both;"></div>
