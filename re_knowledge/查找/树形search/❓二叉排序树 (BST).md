@@ -1,3 +1,5 @@
+ <span style="color: silver;">
+ 
 <div style="float: left; width: 64%; padding: 1%;">
 
 
