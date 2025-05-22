@@ -289,8 +289,103 @@ used in 求解给定node数的 ~ 的<span style="color: Gold;">search</span>所�
   - RR
 
 ![image](https://bluejedis.github.io/picx-images-hosting/ds/image.2dowh1ah54.png)
+
+##  <span style="color: silver;">wd_video_note7.3.2_1平衡二叉树:
+
+###  <span style="color: silver;">definition
+
+####  <span style="color: silver;">count: node'平衡因子
+
+- 以cur为 root : L-R
+
+- structure definition:
+
+
+###  <span style="color: silver;">operation
+
+####  <span style="color: silver;"> <span style="color: GreenYellow;">插入</span>
+
+- min不平衡subtree
+
+
+
+##### <span style="color: lightgray;">LL
+- assume all subtree高度=H
+  - AR为H-1 H+1均与balance状态矛盾
+B as new root
+- then 按照L<root<R 重新sort subtrees
+  - min: BL 置于 B'L
+  - BR>B → 居R 与A合并
+
+
+######  <span style="color: silver;">code实现
+- ① f->lchild = p->rchild;
+  - BR -> A' lchild
+
+
+- ②p->rchild = f;
+  - 令B'rchild=A
+
+
+- ③gf->Ichild/rchild = p;
+  - gf' (lchild&rchild) =B
+
+##### <span style="color: gray;">RR
+AL <A<BL<B< BR
+
+
+code实现
+右旋&左旋different in ①②
+① f->rchild = p->lchild;
+B的L as A的R 
+②p->lchild=f;
+A as B'L
+
+
+LR
+assumpt
+对BR 进行 展开->C
+
+
+未insert前 相对于init CL CR=H-1
+
+
+insert:
+对BR H+1 <=> CR H-1+1=H or CL
+
+
+process
+locally:  对B C <=>RR
+
+
+global
+右旋
+
+
+RL
+assumption同理, BL展开为 C
+
+
+思路 same : C 替 B 替 A
+
+
+process
+先列 node & subtree关系
+locally: B C<=> LL
+
+
+globally: A C左旋
+
+
+tips
+child决定whole 旋转direct
+xL (lchild)
+♻️
+xR（rchild）
+🔄
 </div>
 <div style="clear: both;"></div>
 
 [^1]:动图详解+1个eg include all process https://blog.csdn.net/tunmang5421/article/details/124085854
     - 静态图描述: https://blog.csdn.net/jinking01/article/details/105986893
+    - 动图的原video from: algo_edition4 pinceton https://www.coursera.org/learn/algorithms-part1/lecture/GZe13/red-black-bsts 20:37 red-black BST
