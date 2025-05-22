@@ -52,8 +52,11 @@ int search_Seq(SSTable ST,ElemType key){
 #### <span style="color: silver;"><span style="color: Gold;">性能</span>分析
 
 - <span style="color: Gold;">search</span>成功时<span style="color: LightSkyBlue;">平均</span>长度：
-  - $\operatorname{ASL}_{\mathfrak{h}(n;i)}=\sum_{i=1}^{n}P_{i}(n-i+1)$
-  - 当Pi=1/n时：$\operatorname{PSL}_{n|k\rangle n|}{=}{\frac{n+1}{2}}$
+  - $\operatorname{ASL}_{成功}=\sum_{i=1}^{n}P_{i}(n-i+1)$[^1]
+
+  - 当Pi=1/n时：
+    - (namely 每个元素的查找概率)[^2]
+    - $\operatorname{ASL}_{成功}{=}{\frac{n+1}{2}}$
 - ~失败时：ASL=n+1
 
 </ul>
@@ -98,7 +101,9 @@ int search_Seq(SSTable ST,ElemType key){
 
 - <span style="color: Gold;">search</span><span style="color: Gold;">成功</span>：same as<span style="color: gray;">一般</span>线性表
 - <span style="color: Gold;">search</span><span style="color: GreenYellow;">失败</span>：
-  - <span style="color: LightSkyBlue;">平均</span>长度：$\operatorname{ASL}_{\mathcal{K}:n\times l}=\!\!\sum_{j=1}^{n}q_{j}(l_{j}-1)\!=\!\frac{1\!+2\!+\!\cdots\!+n\!+\!n}{n\!+\!1}\!=\!\frac{n}{2}\!+\!\frac{n}{n\!+\!1}$
+  - $\operatorname{ASL}_{false}=\!\!\sum_{j=1}^{n}q_{j}(l_{j}-1)$[^3]
+    - $$=\!\frac{1\!+2\!+\!\cdots\!+n\!+\!n}{n\!+\!1}$$[^4]
+    - $=\!\frac{n}{2}\!+\!\frac{n}{n\!+\!1}$
   - 当n=6时：ASL=3.86
 
 </ul>
@@ -128,3 +133,22 @@ int search_Seq(SSTable ST,ElemType key){
 
 </div>
 <div style="clear: both;"></div>
+
+[^1]: 
+    - 通式:  $\text{ASL}_{\text{success}} = \sum_{i=1}^{n} p_i \cdot d_i$
+      - $d_i$ 是该元素的深度（比较次数）
+    - 此处:
+      - $=P_1 \cdot n + P_2 \cdot (n-1) + P_3 \cdot (n-2) + \cdots + P_n \cdot 1$
+        - 即 加权求和， n为定值， i为变量
+
+[^2]: - usually, 查找表中记录的P并不相等
+
+
+
+[^3]:
+    - $ q_j $：落入第 $ j $ 个区间的概率
+      - if 查找概率same→ $ q_j = \frac{1}{n+1} $
+    - $ l_j $：查找该失败位置needed比较次数（usually =该失败位置的路径长度）
+    - $ l_j - 1 $：有时调整计算方式
+[^4]: - 推导:🔎//待sum
+      - 假设均匀概率和平衡树结构
