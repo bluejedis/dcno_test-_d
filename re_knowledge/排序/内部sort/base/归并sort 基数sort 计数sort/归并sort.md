@@ -48,7 +48,23 @@
 
 </ul>
 
-ElemType ${}^{\star}\mathtt{B}=$ （ElemType \*)malloc（ $(\mathtt{n}\!+\!1)$ \*sizeof（ElemType））；//辅助数组Bvoid Merge（ElemType A[],int low,int mid,int high)(表A的两段A[low..mid]和A[mid+1..high]各自有序，将它们合并成一个有序表int i,j，k; for(  $\kappa=$  low;  $\kappa\!<=$  high;  $\kappa++$  B[k]  $\mathtt{\ =}\mathtt{A}$  [k]; /将A中所有元素复制到B中 for(  $\dot{x}=$  low,j=mid+1,  $\kappa{=}1$   $\mathrm{i}<=$  mid&&j  $<=$  high;  $\kappa++$  if（B[i] $<=\mathtt{B}$ [j])/比较B的两个段中的元素A[k] $\mathbf{\tau}=\mathbf{F}$ 3 $\mathtt{i}_{\mathcal{+++}}$ //将较小值复制到A中else A[k]=B[j++]; while $\scriptstyle{\dot{\mathbf{z}}}<={\mathfrak{m}}$ id) $\mathbb{A}\left[\mathbb{k}^{++}\right]\!=\!\mathbb{B}\left[\mathbb{i}^{++}\right]$ ：//若第一个表未检测完，复制while( $\scriptstyle{\mathrm{~j}}<=$ high) $\mathbb{A}\left[\mathbb{k}{+}{+}\right]{=}\mathbb{B}\left[\mathbb{j}{+}{+}\right]$ ：//若第二个表未检测完，复制  
+```c
+ElemType *B=(ElemType *)malloc((n+1)*sizeof(ElemType)); //辅助数组B
+void Merge(ElemType A[],int low,int mid,int high){
+//表 A 的两段 A[low..mid] 和 A[mid+1..high] 各自有序，将它们合并成一个有序表
+    int i,j,k;
+    for(k=low;k<=high;k++)
+        B[k]=A[k];                      //将A 中所有元素复制到 B 中
+    for(i=low,j=mid+1,k=i;i<=mid&&j<=high;k++){
+        if(B[i]<=B[j])                  //比较 B 的两个段中的元素
+            A[k]=B[i++];                //将较小值复制到 A 中
+        else
+            A[k]=B[j++];
+    }
+    while(i<=mid) A[k++]=B[i++];    //若第一个表未检测完,复制
+    while(j<=high) A[k++]=B[j++];   //若第二个表未检测完,复制
+}
+```
 
 </ul>
 
@@ -92,7 +108,16 @@ ElemType ${}^{\star}\mathtt{B}=$ （ElemType \*)malloc（ $(\mathtt{n}\!+\!1)$ \
 
 </ul>
 
-void MergeSort（ElemType A[],int low,int high）{if(low<high){ int mid $=$ (low+high)/2;从中间划分两个子序列MergeSort（A,low,mid);//对左侧子序列进行递归sortMergeSort(A,mid+l,high); /对右侧子序列进行递归sort Merge(A,low,mid,high); /归并  
+```c
+void MergeSort(ElemType A[],int low,int high){
+    if(low<high){
+        int mid=(low+high)/2;       //从中间划分两个子序列
+        MergeSort(A,low,mid);       //对左侧子序列进行递归排序
+        MergeSort(A,mid+1,high);    //对右侧子序列进行递归排序
+        Merge(A,low,mid,high);      //归并
+    }
+} 
+```
 
 </ul>
 

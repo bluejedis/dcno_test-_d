@@ -34,14 +34,14 @@
 
 ```c
 typedef struct{
-    ElemType *elem;
-    int TableLen;
+    ElemType *elem;     //动态数组基址
+    int TableLen;       //表的长度
 }SSTable;
 
-int search_Seq(SSTable ST,ElemType key){
-    ST.elem[0]=key;
-    for(int i=ST.TableLen;ST.elem[i]!=key;--i);
-    return i;
+int Search_Seq(SSTable ST, ElemType key){
+    ST.elem[0]=key;                         //“哨兵”
+    for(int i=ST.TableLen;ST.elem[i]!=key;--i);  //从后往前找
+    return i;   //若查找成功，则返回元素下标；若查找失败，则返回 0
 }
 ```
 

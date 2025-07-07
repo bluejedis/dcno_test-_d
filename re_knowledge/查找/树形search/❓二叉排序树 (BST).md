@@ -65,12 +65,13 @@ Binary sort tree
 - 非递归<span style="color: Gold;">search</span>算法：
 
 ```c
-BSTNode *BST<span style="color: Gold;">search</span>(BiTree T,ElemType key)( 
-    while(T!=NULL&&key != T->data){ 
-      if（key<T->data）T=T->1child；
-      elseT=T->rchild; 
+BSTNode *BST_Search(BiTree T, ElemType key){
+    while(T!=NULL&&key!=T->data){    //若树空或等于根结点值，则结束循环
+        if(key<T->data) T=T->lchild; //小于，则在左子树上查找
+        else T=T->rchild;            //大于，则在右子树上查找
     }
-    returnT;  
+    return T;
+} 
 ```
 
 - eg：
@@ -110,18 +111,20 @@ BSTNode *BST<span style="color: Gold;">search</span>(BiTree T,ElemType key)(
 - <span style="color: GreenYellow;">插入</span>算法：
 
 ```c
-int BST Insert（BiTree &T，KeyType k）(
-  if（T==NULL)(
-    T = (BiTree)malloc（sizeof（BSTNode));
-    T->data = k
-    T->lchild = T->rchild = NULL;
-    return1;
-  else if(k=T->data)
-    return 0;
-  else if(k<T->data)
-    return BST Insert(T->lchild,k);
-  else
-    return BST Insert（T->rchild,k);
+int BST_Insert(BiTree &T, KeyType k){
+    if(T==NULL){                    //原树为空，新插入的记录为根结点
+        T=(BiTree)malloc(sizeof(BSTNode));
+        T->data=k;
+        T->lchild=T->rchild=NULL;
+        return 1;                   //返回1，插入成功
+    }
+    else if(k==T->data)             //树中存在相同关键字的结点，插入失败
+        return 0;
+    else if(k<T->data)              //插入T的左子树
+        return BST_Insert(T->lchild,k);
+    else                            //插入T的右子树
+        return BST_Insert(T->rchild,k);
+}
 ```
 
 </ul>
@@ -143,11 +146,14 @@ int BST Insert（BiTree &T，KeyType k）(
 - <span style="color: Lime;">构造</span>算法：
 
 ```c
-void Creat BST（BiTree &T，KeyType str[],int n){
-    T = NULL;
-    int i = 0
-    while(i < n)
-      BSTInsert(T,str[i]);
+void Creat_BST(BiTree &T, KeyType str[], int n){
+    T=NULL;                     //初始时 T 为空树
+    int i=0;
+    while(i<n){                 //依次将每个关键字插入二叉排序树
+        BST_Insert(T,str[i]);
+        i++;
+    }
+}
 ```
 
 </ul>
