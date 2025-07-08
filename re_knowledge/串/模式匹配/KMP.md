@@ -159,18 +159,20 @@
 
 - next值计算程序:
 
-void get next(SString T,int next[]){
-    int i=1, j=0;
+```c
+void get_next(SString T,int next[]){
+    int i=1,j=0;
     next[1]=0;
     while(i<T.length){
-        if(j==0 || T.ch[i]==T.ch[j]){
-            ++i;
-            ++j;
-            next[i]=j;
+        if(j==0||T.ch[i]==T.ch[j]){
+            ++i; ++j;
+            next[i]=j;      //若pi=pj，则 next[j+1]=next[j]+1
         }
-        else j=next[j];
+        else
+            j=next[j];      //否则令 j=next[j]，循环继续
     }
 }
+```
 
 </ul>
 
@@ -183,19 +185,22 @@ void get next(SString T,int next[]){
   - 失配时i不变,j回退
 - 代码实现:
 
+```c
 int Index_KMP(SString S,SString T,int next[]){
     int i=1, j=1;
-    while(i<=S.length && j<=T.length){
-        if(j==0 || S.ch[i]==T.ch[j]){
-            ++i;
-            ++j;
+    while(i<=S.length&&j<=T.length){
+        if(j==0||S.ch[i]==T.ch[j]){
+            ++i; ++j;            //继续比较后继字符
         }
-        else j=next[j];
+        else
+            j=next[j];          //模式串向右移动
     }
-    if(j>T.length) return i-T.length;
-    else return 0;
+    if(j>T.length)
+        return i-T.length;      //匹配成功
+    else
+        return 0;
 }
-
+```
 > KMP匹配过程中比较次数的分析（2019）
 
 </ul>
@@ -269,22 +274,21 @@ int Index_KMP(SString S,SString T,int next[]){
 
 <ul>
 
-void get nextval(SString T,int nextval[]){
+```c
+void get_nextval(SString T,int nextval[]){
     int i=1, j=0;
     nextval[1]=0;
     while(i<T.length){
-        if(j==0 || T.ch[i]==T.ch[j]){
-            ++i;
-            ++j;
-            if(T.ch[i]!=T.ch[j])
-                nextval[i]=j;
-            else
-                nextval[i]=nextval[j];
+        if(j==0||T.ch[i]==T.ch[j]){
+            ++i; ++j;
+            if(T.ch[i]!=T.ch[j]) nextval[i]=j;
+            else nextval[i]=nextval[j];
         }
         else
             j=nextval[j];
     }
 }
+```
 
 </ul>
 

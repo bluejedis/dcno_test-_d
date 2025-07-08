@@ -23,17 +23,21 @@
 
 <ul>
 
-int Index(SString S,SString T)(
-    int i=1, j=1
-    while(i<=S.length && j<=T.length)(
-        if(S.ch[i]==T.ch[j]）{
-            ++i ++j  //继续比较后继字符
-        else{
-            i=i-j+2
-            j=1      //指针后退重新开始匹配
+```c
+int Index(SString S,SString T){
+    int i=1,j=1;
+    while(i<=S.length && j<=T.length){
+        if(S.ch[i]==T.ch[j]){
+            ++i; ++j;            //继续比较后继字符
         }
-    if(j>T.length)return i-T.length;
+        else{
+            i=i-j+2; j=1;       //指针后退重新开始匹配
+        }
+    }
+    if(j>T.length) return i-T.length;
     else return 0;
+}
+```
 
 </ul>
 

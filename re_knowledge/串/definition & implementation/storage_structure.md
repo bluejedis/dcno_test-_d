@@ -19,11 +19,13 @@
 
 <ul>
 
-#define MAXLEN 255/预定义最大串长为255
-typedef struct{ 
-    char ch[MAXLEN];//每个分量存储一个字符
-    int length;/串的实际长度
-)sString;  
+```c
+#define MAXLEN 255          //预定义最大串长为255
+typedef struct{
+    char ch[MAXLEN];        //每个分量存储一个字符
+    int length;             //串的实际长度
+}SString;
+``` 
 
 </ul>
 
@@ -61,6 +63,7 @@ typedef struct{
   - 采用动态分配方式
 
 </ul>
+</ul>
 
 ### 堆分配存储表示  
 
@@ -71,9 +74,13 @@ typedef struct{
   - 存储空间动态分配
   - 在程序执行过程中分配
 
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/f872b2bd2b132f3ab95a92fe5e40c026db9b3e63ed13be51fbf161f5c6c88850.jpg)  
+```c
+typedef struct{
+    char *ch;           //按串长分配存储区，ch 指向串的基地址
+    int length;         //串的长度
+}HString;
+```
 
-</ul>
 
 #### 实现方式
 
@@ -88,6 +95,7 @@ typedef struct{
   - 分配失败返回NULL
   - free()释放已分配空间
 
+</ul>
 </ul>
 
 ### 块链存储表示  

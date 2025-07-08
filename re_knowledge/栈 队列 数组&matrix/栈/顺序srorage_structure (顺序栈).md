@@ -15,11 +15,13 @@
 #### 数据结构定义
 <ul>
 
-#define MaxSize 50//定义栈中元素的最大个数
-typedef struct{ 
-    Elemtype data[MaxSize];//存放栈中元素
-    int top; //栈顶指针 
+```c
+#define MaxSize 50          //定义栈中元素的最大个数
+typedef struct{
+    Elemtype data[MaxSize];   //存放栈中元素
+    int top;                //栈顶指针
 }SqStack;
+```
 </ul>
 
 #### 栈的基本属性
@@ -48,8 +50,13 @@ typedef struct{
   - 栈空条件：S.top==0
   - 栈满条件：S.top==MaxSize
 
->attention: 栈和队列的判空、判满条件，会因实际给的条件不同而变化，下面的代码实现是在栈顶指针初始化为-1的条件下的相应方法，而其他情况则需具体问题具体分析。
+>attention: 
 
+- 栈与队列的判空/判满条件说明
+  - 条件依赖性
+    - 具体判断逻辑取决于实现时的初始条件设定
+    - 示例为栈顶指针初始化为`-1`的特殊情况
+  
 </ul>
 </ul>
 

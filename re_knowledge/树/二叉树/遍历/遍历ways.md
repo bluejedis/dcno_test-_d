@@ -6,7 +6,8 @@
 
 三义树的遍历是指按某条搜索路径访问树中每个结点，使得每个结点均被访问一次，而且仅被访问一次。由于二叉树是一种非线性结构，每个结点都可能有两棵子树，因此需要寻找一种规律，以便使二叉树上的结点能排列在一个线性队列上，进而便于遍历。
 
-pro：二叉树遍历方式的分析（2009、2011、2012）pro：（算法题）二叉树遍历的相关应用（2014、2017、2022）
+>pro：二叉树遍历方式的分析（2009、2011、2012）
+pro：（算法题）二叉树遍历的相关应用（2014、2017、2022）
 
 由二叉树的递归定义可知，遍历一棵二叉树便要决定对根结点N、左子树L和右子树R的访问顺序。按照先遍历左子树再遍历右子树的原则，常见的遍历次序有先序（NLR）、中序（LNR）和后序（LRN）三种遍历算法，其中"序"指的是根结点在何时被访问。
 
@@ -27,12 +28,15 @@ pro：二叉树遍历方式的分析（2009、2011、2012）pro：（算法题�
 
 ##### 递归算法实现
 
-void PreOrder（BiTree T){
-    if（T!=NULL){
-        visit(T);  //访问根结点
-        PreOrder(T->lchild);  //递归遍历左子树
-        PreOrder（T->rchild);  //递归遍历右子树
-
+```c
+void PreOrder(BiTree T){
+    if(T!=NULL){
+        visit(T);               //访问根结点
+        PreOrder(T->lchild);    //递归遍历左子树
+        PreOrder(T->rchild);    //递归遍历右子树
+    }
+}
+```
 </ul>
 
 #### 中序遍历（InOrder）
@@ -50,11 +54,15 @@ pro：中序序列中结点关系的分析（2017）
 
 ##### 递归算法实现
 
-void InOrder（BiTree T）{
-    if（T!=NULL){
-        InOrder（T->lchild);  //递归遍历左子树
-        visit(T);  //访问根结点
-        InOrder(T->rchild);  //递归遍历右子树
+```c
+void InOrder(BiTree T){
+    if(T!=NULL){
+        InOrder(T->lchild);     //递归遍历左子树
+        visit(T);               //访问根结点
+        InOrder(T->rchild);     //递归遍历右子树
+    }
+}
+```
 
 </ul>
 
@@ -71,11 +79,15 @@ void InOrder（BiTree T）{
 
 ##### 递归算法实现
 
-void PostOrder（BiTree T){
-    if（T!=NULL){
-        PostOrder(T->lchild);  //递归遍历左子树
-        PostOrder(T->rchild);  //递归遍历右子树
-        visit(T);  //访问根结点
+```c
+void PostOrder(BiTree T){
+    if(T!=NULL){
+        PostOrder(T->lchild);   //递归遍历左子树
+        PostOrder(T->rchild);   //递归遍历右子树
+        visit(T);               //访问根结点
+    }
+}
+```
 
 </ul>
 </ul>
