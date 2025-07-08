@@ -50,8 +50,11 @@
 
 > attention: 
 
-线性表是一种逻辑结构，表示元素之间一对一的相邻关系。顺序表和链表是指存储结构，两者属于不同层面的概念，因此不要将其混淆。  
-
+- <span style="border: 1px solid black; padding: 5px; display: inline-block;">线性表</span>
+  - 逻辑结构
+  - 表示元素之间一对一的相邻关系
+- <span style="border: 1px solid black; padding: 5px; display: inline-block;">顺序</span>表&<span style="border: 1px solid black; padding: 5px; display: inline-block;">链</span>表
+  - 存储结构
 </ul>
 
 </ul>

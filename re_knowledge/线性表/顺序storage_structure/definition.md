@@ -68,6 +68,14 @@ typedef struct{
     int length;//顺序表的当前长度
 }SqList; //顺序表的类型定义
 
+```c
+#define MaxSize 50              //定义线性表的最大长度
+typedef struct{
+    ElemType data[MaxSize];   //顺序表的元素
+    int length;               //顺序表的当前长度
+}SqList;                        //顺序表的类型定义
+```
+
 </ul>
 
 #### 动态分配
@@ -80,17 +88,33 @@ typedef struct{
   - 无需一次性划分所有空间
 - 代码实现：
 
-#define InitSize 100//表长度的初始定义
+```c
+#define InitSize 100            //表长度的初始定义
 typedef struct{
-    ElemType *data;//指示动态分配数组的指针
-    int MaxSize,length;//数组的最大容量和当前个数
-}SeqList; //动态分配数组顺序表的类型定义
+    ElemType *data;           //指示动态分配数组的指针
+    int MaxSize,length;       //数组的最大容量和当前个数
+}SeqList;                        //动态分配数组顺序表的类型定义
+```
+
+C 的初始动态分配语句为
+
+
+
+*C++的初始动态分配语句为*
+
+
 
 - 初始动态分配语句：
-  - C语言：`L.data = (ElemType*)malloc(sizeof(ElemType)*InitSize);`
-  - C++：`L.data = new ElemType[InitSize];`
-
+  - C语言：
+```c
+L.data=(ElemType*)malloc(sizeof(ElemType)*InitSize);
+```
+  - C++：
+```cpp
+L.data=new ElemType[InitSize];
+```
 > attention: 
+
 动态分配并不是链式存储，它同样属于顺序存储结构，物理结构没有变化，依然是随机存取方式，只是分配的空间大小可以在运行时动态决定。  
 
 </ul>

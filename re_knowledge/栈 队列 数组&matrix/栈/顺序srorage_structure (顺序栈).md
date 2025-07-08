@@ -81,11 +81,19 @@ typedef struct{
 ### 顺序栈基本操作实现
 <ul>
 
+
 #### 初始化
 <ul>
 
-void InitStack（SqStack &S){
-    s.top  $\scriptstyle{\varepsilon=-1}$  /初始化栈顶指针
+```cpp
+
+void InitStack(SqStack &S){
+
+    S.top=-1;   //初始化栈顶指针
+
+}
+
+```
 
 </ul>
 
@@ -93,11 +101,21 @@ void InitStack（SqStack &S){
 
 <ul>
 
+```cpp
+
 bool StackEmpty(SqStack S){
-    if(s.top  $==-1$  一 //栈 
-        returntrue;
+
+    if(S.top==-1)
+
+        return true;    //栈空
+
     else
-        return false;
+
+        return false;   //不空
+
+}
+
+```
 </ul>
 
 
@@ -105,22 +123,42 @@ bool StackEmpty(SqStack S){
 
 <ul>
 
+```cpp
+
 bool Push(SqStack &S,ElemType x){
-    if(s.top  $==$  MaxSize-1) /栈满，报错 
+
+    if(S.top==MaxSize-1) //栈满，报错
+
         return false;
-    S.data[  $++\mathbb{S}$  .top]  $=\!\mathrm{x}$  /指针先加1，再入栈 
-    returntrue;
+
+    S.data[++S.top]=x;   //指针先加1，再入栈
+
+    return true;
+
+}
+
+```
 </ul>
 
 #### 出栈
 
 <ul>
 
-bool Pop（SqStack &S,ElemType &x){
-    if(s.top  $==1$  /栈空，报错 
+```cpp
+
+bool Pop(SqStack &S,ElemType &x){
+
+    if(S.top==-1)   //栈空，报错
+
         return false;
-    $\scriptstyle{\mathrm{x}}={\mathrm{s}}$  .data[s.top--]; /先出栈，指针再减1 
-    returntrue;
+
+    x=S.data[S.top--]; //先出栈，指针再减1
+
+    return true;
+
+}
+
+```
 
 </ul>
 
@@ -128,22 +166,32 @@ bool Pop（SqStack &S,ElemType &x){
 
 <ul>
 
-bool GetTop（SqStack S,ElemType &x){
-    if(s.top  $==-1$  一 /栈空，报错 
+```cpp
+
+bool GetTop(SqStack S,ElemType &x){
+
+    if(S.top==-1)   //栈空，报错
+
         return false;
-    $\scriptstyle{\mathrm{x}=\mathrm{S}}$ .data[s.top]; $/\mathrm{x}$ 记录栈顶元素
+
+    x=S.data[S.top]; //x记录栈顶元素
+
     return true;
+
+}
+
+```
 
 
 > attention:  
 
 这里的top指的是栈顶元素。于是：
-- 进栈操作为S.data $_{[++S.\thinspace t o p]=x}$
-- 出栈操作为 $\scriptstyle{\mathrm{x}=\mathrm{S}}$ .data[s.top--]
-- 若栈顶指针初始化为s.top $\scriptstyle{\boldsymbol{\mathbf{\varepsilon}}}=0$：
+- 进栈操作为S.data [++S.top]=x
+- 出栈操作为 x=S.data[s.top--]
+- 若栈顶指针初始化为s.top =0：
   - 即top指向栈顶元素的下一位置
-  - 入栈操作变为S.data $\scriptstyle[S,\,\mathsf{t o p}^{++}\,]\,=\,\mathrm{x}$
-  - 出栈操作变为 $\scriptstyle{\mathrm{x}=\mathrm{S}}$ .data[--S.top]
+  - 入栈操作变为S.data[s.top++]=x;
+  - 出栈操作变为x=S.data[--S.top]
   - 相应的栈空栈满条件也会发生变化
 </ul>
 </ul>
@@ -162,9 +210,9 @@ bool GetTop（SqStack S,ElemType &x){
 图3.3两个顺序栈共享存储空间
 
 - 两个栈的栈顶指针都指向栈顶元素
-  - top $_{0=-1}$ 时0号栈为空
-  - top1 $=$ Max Size 1空
-  - 仅当两个栈顶指针相邻（top1-top $_{;0=1}$ ）时，判断为栈满
+  - top0=-1时0号栈为空
+  - top1=时Max Size 1空
+  - 仅当两个栈顶指针相邻（top1-top0=1 ）时，判断为栈满
   - 0号栈进栈时top0先加1再赋值
   - 1号栈进栈时top1先减1再赋值
   - 出栈时则刚好相反
