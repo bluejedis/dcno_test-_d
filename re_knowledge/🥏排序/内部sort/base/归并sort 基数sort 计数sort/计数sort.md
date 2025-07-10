@@ -38,9 +38,9 @@
 <ul>
 
 - 初始化计数数组
-- 统计元素出现次数
-- 累加计算小于等于x的元素个数
-- 从后往前放置元素到正确位置
+  - 统计元素出现次数
+  - 累加计算≤x的元素个数
+- 从后往前放置元素to正确位置
 
 ```c
 void CountSort(ElemType A[],ElemType B[],int n,int k){
@@ -109,7 +109,7 @@ void CountSort(ElemType A[],ElemType B[],int n,int k){
 
 <ul>
 
-- 更适用于顺序存储
+- 更适用于<span style="border: 1px solid black; padding: 5px; display: inline-block;">顺序</span>存储
 - 适用于整数且范围不太大的序列
 
 </ul>

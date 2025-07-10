@@ -11,7 +11,7 @@
 <ul>
 
 - 归并sort与基于交换、选择等sort思想不同
-- 归并含义：将两个或两个以上的有序表合并成新的有序表
+- 归并含义：将<span style="border-bottom: 3px dotted black;">两个</span>  <span style="border-bottom: 2px solid black;">or</span>两个<span style="border-bottom: 3px dotted black;">以上</span>的有序表<span style="border: 1px solid black; padding: 5px; display: inline-block;">合并</span>成新的有序表
 - 基本过程：
   - 将n个记录视为n个有序子表(每个长度为1)
   - 两两归并得到⌈n/2⌉个长度为2或1的有序表
@@ -161,7 +161,7 @@ void MergeSort(ElemType A[],int low,int high){
 
 <ul>
 
-- 适用于顺序存储和链式存储的线性表
+- 适用于<span style="border: 1px solid black; padding: 5px; display: inline-block;">顺序</span>存储和<span style="border: 1px solid black; padding: 5px; display: inline-block;">链式</span>存储的线性表
 
 </ul>
 
