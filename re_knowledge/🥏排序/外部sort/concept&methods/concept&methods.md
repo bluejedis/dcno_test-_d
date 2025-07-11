@@ -5,7 +5,7 @@
 <ul>
 
 - 外部sort可能会考查相关概念、方法和sort过程
-- 外部sort的算法比较复杂，不会在算法设计上进行考查
+- 外部sort的算法比较复杂，<u>不会在算法设计上进行考查</u>
 - 主要内容：
   - 外部sort指大文件sort，待sort记录存储在外存中，无法一次性装入内存
   - 减少平衡归并中外存读/写次数的方法：
@@ -25,8 +25,8 @@
 - 外部sort：
   - 适用于大文件sort
   - 记录存储在外存上
-  - 需要分批调入内存进行sort
-  - 需要多次内存和外存交换
+    - 需要分批<span style="border-bottom: 3px dotted black;">调入内存</span>进行sort
+    - 需要多次内存和外存<span style="border: 1px solid black; padding: 5px; display: inline-block;">交换</span>
 
 </ul>
 
@@ -69,8 +69,8 @@
 
 - 内存分配：
   - 三个缓冲区
-    - 两个输入缓冲区
-    - 一个输出缓冲区
+    - 2 in 缓冲区
+    - 1 out..
 
 </ul>
 
@@ -101,10 +101,10 @@
 
 <ul>
 
-- 增大归并路数k：
+- <span style="border-bottom: 3px dotted black;">增大</span><span style="border: 1px solid black; padding: 5px; display: inline-block;">归并路数k</span>：
   - 减少归并趟数
   - 减少磁盘I/O次数
-- 减少初始归并段个数r：
+- <span style="border-bottom: 2px solid black;">减少</span><span style="border: 1px solid black; padding: 5px; display: inline-block;">初始归并段个数r</span>：
   - 降低归并树高度
   - 减少归并趟数S
 
