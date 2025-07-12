@@ -5,13 +5,13 @@
 <ul>
 
 ####  <span style="color: silver;">遍历二叉树的特点：
-  - 按规则将结点排列成线性序列
-  - 每个结点(除首尾)有直接前驱和后继
+  - 按规则 将结点排列成<span style="border-bottom: 3px dotted black;">线性</span>序列
+  - 每个结点(除首尾)have 直接<span style="border-bottom: 2px solid black;">前驱</span>和<span style="border-bottom: 2px solid black;">后继</span>
 
 > pro：后序线索二叉树的定义（2010）  
 
 - 传统二叉链表的局限：
-  - 仅能体现父子关系
+  - only 体现父子关系
   - 无法直接获取遍历前驱后继
 
 ####  <span style="color: silver;">空指针利用：
@@ -26,11 +26,19 @@
 ####  <span style="color: silver;">线索化规则：
   - 无左子树：lchild指向前驱
   - 无右子树：rchild指向后继
-  - 需增加标志域标识指针类型
+  - 需增加<span style="border: 1px solid black; padding: 5px; display: inline-block;">标志域</span>标识指针类型
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/a9348224b92a82715ff985f8c31844579514448dbf87208d26fb3b1653501d4d.jpg)  
 其中，标志域的含义:
+$$ \text{ltag} = 
+\begin{cases} 
+0, & \text{lchild域指示node'右孩子} \\
+1, & \text{.. ..前驱} \\
+0, & \text{rchild域..右孩子} \\
+1, & \text{.. ..后继}
+\end{cases} $$
 
+---
 ####  <span style="color: silver;">存储结构：
 
 ```c
