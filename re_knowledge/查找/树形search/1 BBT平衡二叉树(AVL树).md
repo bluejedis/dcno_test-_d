@@ -65,8 +65,8 @@
  - 以<span style="color: GreenYellow;">插入</span>road上 离<span style="color: GreenYellow;">插入</span>node最近的|<span style="color: Goldenrod;">平衡</span><span style="color: LightSkyBlue;">因子</span>| ＞1的node as 根的subtree
 
 
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/2209bb6cb24b8548ca118f9d5f40aa8899f7ed2e20e83c7fe0c0621ee7b842db.jpg)
-图7.10最小不平衡子树(虚线框)
+![image](https://bluejedis.github.io/picx-images-hosting/DS/image.54y1tipxss.png)
+图7.10 <span style="border: 1px solid black; padding: 5px; display: inline-block;">最小</span>不平衡子树(虚线框)
 
 > pro：<span style="color: Goldenrod;">平衡</span><span style="color: Gold;">二叉</span><span style="color: green;">树</span>的<span style="color: GreenYellow;">插入</span>及调整操作的实例（2010、2019、2021）
 

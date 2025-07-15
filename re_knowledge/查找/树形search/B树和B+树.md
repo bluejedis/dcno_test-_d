@@ -2,13 +2,13 @@
 
 ## B树和$\mathbf{B}+$树
 
-考研大纲对B树和$^{\mathrm{B+}}$树的要求各不相同，重点在于考查B树，不仅要求理解B树的基本特点，还要求掌握B树的建立、<span style="color: GreenYellow;">插入</span>和删除操作，而对$^{\mathrm{B+}}$树则只考查concept。
+考研大纲对B树和${\mathrm{B+}}$树的要求各不相同，重点在于考查B树，不仅要求理解B树的基本特点，还要求掌握B树的建立、<span style="color: GreenYellow;">插入</span>和删除操作，而对${\mathrm{B+}}$树则只考查concept。
 
 <ul>
 
 ### B树及其基本操作
 
-所谓$m$阶B树是所有node的平衡因子均等于0的$m$路平衡<span style="color: Gold;">search</span>树。
+所谓$m$阶B树是所有node的平衡因子均=0的<span style="border: 1px solid black; padding: 5px; display: inline-block;">$m$路平衡<span style="color: Gold;">search</span>树</span>。
 
 > pro：B树的定义和特点（2009）
 
@@ -63,9 +63,11 @@
 
 </ul>
 
-<ul>
+
 
 #### B树的查找
+
+<ul>
 
 - 基本特点：
   - 与二叉排序树相似
@@ -88,9 +90,11 @@
 
 </ul>
 
-<ul>
+
 
 #### B树的<span style="color: LightSkyBlue;">高度</span>分析
+
+<ul>
 
 ##### <span style="color: LightSkyBlue;">高度</span>定义
 
@@ -115,9 +119,11 @@
 
 </ul>
 
-<ul>
+
 
 #### B树的<span style="color: GreenYellow;">插入</span>操作
+
+<ul>
 
 > pro：通过<span style="color: GreenYellow;">插入</span>操作<span style="color: Lime;">构造</span>一棵初始为空的B树（2020）
 
@@ -154,7 +160,7 @@
 
 </ul>
 
-<ul>
+
 
 ### B树的删除
 
@@ -168,9 +174,9 @@
 
 > pro：B树的删除操作的实例（2012、2022）
 
-</ul>
 
-<ul>
+
+
 
 #### 非终端node的删除处理
 
@@ -185,9 +191,11 @@
 
 </ul>
 
-<ul>
+
 
 #### 终端node的删除情况
+
+<ul>
 
 ##### 情况一：直接删除
 
@@ -214,7 +222,7 @@
 
 </ul>
 
-<ul>
+
 
 #### 合并后的处理
 
@@ -230,7 +238,8 @@
 
 </ul>
 
-<ul>
+
+---
 
 ### B+树的concept
 
@@ -257,11 +266,12 @@
 
 > pro：B树和B+树的差异的分析（2016）
 
-</ul>
 
-<ul>
+
+
 
 #### B+树与B树的主要差异
+<ul>
 
 ##### 结构差异
 
@@ -291,7 +301,7 @@
 
 </ul>
 
-<ul>
+
 
 #### B+树的操作特点
 
