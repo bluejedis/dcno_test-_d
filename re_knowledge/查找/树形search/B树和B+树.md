@@ -17,12 +17,12 @@
 #### B树的定义特性
 
 - 一棵$m$阶B树或为空树，或为满足如下特性的$m$叉树：
-  - 树中每个node至多有$m$棵子树，即至多有$m-1$个关键字
+  - 树中每个node至多有$m$棵子树，即至多有<span style="border: 1px solid black; padding: 5px; display: inline-block;">$m-1$</span>个关键字
   - 若根node不是叶node，则至少有2棵子树，即至少有1个关键字
-  - 除根node外的所有非叶node至少有$\lceil m/2\rceil$棵子树，即至少有$\lceil m/2\rceil_{-1}$个关键字
+  - 除根node外的所有非叶node至少有$\lceil m/2\rceil$棵子树，即至少有<span style="border: 1px solid black; padding: 5px; display: inline-block;">$\lceil m/2\rceil -1$</span>个关键字
   - 所有非叶node的结构如下：
 
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/641123898fc54d168c81307aaa0f46a0aeb4dc3c39dc6bc0add67a795683e706.jpg)`
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/641123898fc54d168c81307aaa0f46a0aeb4dc3c39dc6bc0add67a795683e706.jpg)
 
   - 其中：
     - $K_{i}$ $(i=1,2,\cdots,n)$为node的关键字，且满足$K_{1}<K_{2}<\cdots<K_{n}$
@@ -33,10 +33,10 @@
   - 所有的叶node都出现在同一层次上，并且不带信息
 
 > pro：B树中关键字数和node数的分析（2013、2014、2018、2021）
-
+---
 </ul>
 
-<ul>
+
 
 #### B树的性质分析
 
@@ -78,15 +78,17 @@
 
 - 在B树中找node(磁盘操作)
 - 在node内找关键字(内存操作)
-  - 可用顺序查找或折半查找
+  - 可用 <span style="border-bottom: 2px solid black;">顺序</span> 查找 或 <span style="border-bottom: 3px dotted black;">折半</span> 查找
   - 查找效率取决于目标node层次数
 
 ##### 查找过程
 
 - 从根node开始
 - 在当前node<span style="color: gray;">有</span><span style="color: LightSkyBlue;">序</span>表中查找
-- 根据比较结果选择子树继续查找
+  - 根据比较结果选择子树继续查找
 - 直到找到目标或达到叶node
+
+---
 
 </ul>
 
@@ -98,14 +100,14 @@
 
 ##### <span style="color: LightSkyBlue;">高度</span>定义
 
-- 不包括最后不带信息的叶node层
+- <span style="border-bottom: 2px solid black;">不包括</span> <span style="border-bottom: 3px dotted black;">最后</span>不带信息的叶node层
 
 ##### <span style="color: LightSkyBlue;">高度</span>范围分析
 
 - 最小<span style="color: LightSkyBlue;">高度</span>情况：
   - 每个node关键字数最多
   - 满足：$n\!\leqslant\!(m-1)(1+m+m^{2}+\cdots+m^{h-1})=m^{h}-1$
-  - 得到：$h\geqslant\log_{m}\left(n+1\right)$
+  - 得到：<span style="border: 1px solid black; padding: 5px; display: inline-block;">$h\geqslant\log_{m}\left(n+1\right)$</span>
 
 - 最大<span style="color: LightSkyBlue;">高度</span>情况：
   - 每个node关键字数最少
@@ -115,8 +117,8 @@
     - 第三层：至少$2\left\lceil m/2\right\rceil$个node
     - 第$h+1$层：至少$2(\lceil m/2\rceil)^{h-1}$个node
   - 满足：$n+1\!\geqslant\!2(\lceil m/2\rceil)^{h-1}$
-  - 得到：$h{\leqslant}\log_{\lceil m/2\rceil}((n+1)/2)+1$
-
+  - 得到：<span style="border: 1px solid black; padding: 5px; display: inline-block;">$h{\leqslant}\log_{\lceil m/2\rceil}((n+1)/2)+1$</span>
+---
 </ul>
 
 
@@ -136,17 +138,22 @@
 - <span style="color: GreenYellow;">插入</span>阶段：
   - 关键字数限制：$[\lceil m/2\rceil\!-\!1,\,m\!-\!1]$
   - 两种情况：
+  <span style="border: 1px solid black; padding: 5px; display: inline-block;">
     - <span style="color: GreenYellow;">插入</span>后关键字数<m：直接<span style="color: GreenYellow;">插入</span>
-    - <span style="color: GreenYellow;">插入</span>后关键字数>m-1：需要分裂
+    - .. >m-1：需要分裂
+  </span>
 
 ##### node分裂方法
 
 - 基本步骤：
   - 创建新node
-  - 从中间位置分割关键字
-  - 左部分保留在原node
-  - 右部分移至新node
-  - 中间关键字上移至父node
+  
+  <span style="border: 1px solid black; padding: 5px; display: inline-block;">
+
+  - 从**中**间位置 分割 关键字
+    - 左部分<u>stay</u> in 原node
+    - 右.. 移至 <span style="border-bottom: 3px dotted black;">新</span> node
+  - **中**key **上**移至父node</span>
 - 特殊情况：
   - 父node可能需要继续分裂
   - 分裂可能传播至根node
@@ -154,7 +161,9 @@
 
 - 示例(m=3的B树)：
 
-![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/80d65ed644ea63d8e94f85979f930603e6eb9b46bb9c910cd6cf03ad6c8bf748.jpg)`
+![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/80d65ed644ea63d8e94f85979f930603e6eb9b46bb9c910cd6cf03ad6c8bf748.jpg)
+
+---
 
 </ul>
 
@@ -189,7 +198,7 @@
 
 ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/7238b2b80bcf193f427d7371143169091e88dc7e89de6a71f0c30816046d808c.jpg)`
 
-</ul>
+
 
 
 
