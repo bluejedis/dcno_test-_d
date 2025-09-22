@@ -1,0 +1,187 @@
+# 绪论
+- elements
+    - ADT
+        - >define 数据结构
+        - element
+            - data对象
+            - data**关系**
+            - 基本操作集
+    - type
+        - 逻辑
+            - 线性
+                - >元素间一一对应
+                - 线性表
+                - 栈、队列、数组
+                - 字符串
+            - 非线性
+                - 树，图，集合
+            - ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/4c0160e3de7b882cb02760de400a3f1d14a69d82805811692110d7243ef0d6d6.jpg)
+            - ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/3d4eee36de9ffedeebe77662203b1d9d8c21ec8508de8057cb03357e0b73365f.jpg)
+
+        - 存储(物理)
+            - 顺序
+            - 链式
+            - 索引
+            - 散列(Hash)
+- <span style="color:lightgray">算法特性
+    - 特性
+        - 有穷，确定，可行
+            - ↑程序不一定有穷
+        - I O
+    - 设计目标
+        - 正确，可读，健壮
+        - 高效&低存储量</span>
+    - --
+-  **复杂度**
+    - 时间..$T(n)$
+        - >$T(n)$是关于 规模n的函数
+            - 问题规模始终为n
+        - type:
+            - 循环
+                - i与条件有关(单层..)
+                    - > step
+                        - >以i为媒介，最终消i
+                        - 设基本语句执行次数为 t
+                        - ①找循环变量i与t的关系← 以t表示i
+                            - ; 第三处
+                        - ②代入i结束条件 求t ← 关于n的表达式
+                            -; ..二..
+                    - eg.`for(i=1; i<=n; i=i*2)`
+                        - ①$i=2^t$
+                        - ②$2^t＞n$← 条件结束, 反 比较符号
+                            - $t＞log_2n$
+                - ....无.. (多...
+                    - step：
+                        - if 内层直接含n
+                            - >乘法
+                            - 内层：每个i执行次数
+                            - 外层：多少个i
+                        - else 列式(内层以i表j
+                            - >求和
+                            - $\Sigma_{i=a}^{n相关}\Sigma_{j=b}^{i相关} 1$
+                                - 用性质化简
+                            - $\Sigma_{i=a}^{n相关} i相关$
+                    - eg.
+                        - `int m=0,i,j;
+                            for(i=1;i<=n;i++)
+                                for(j=1;j<=2*i;j++)
+                                    m++;`
+                            - > **执行次数**
+                            - $\Sigma_{i=1}^n \Sigma_{j=1}^{2i} 1$
+                                - =$\Sigma_{i=1}^n 2i$
+                                - =$2 \Sigma_{i=1}^n i$
+                                    - $2\cdot \frac{n(n+1)}{2}$
+                        - attention
+                            - `for(i=n-1;i>1;i--)`
+                                - 只能取到i=2
+                            - `for(j=1;j<i;j++)`
+                                - 只能...j=i-1
+                                - --
+                            - `for(k=1;k<=n;k*=2)
+                                for(j=1;j<=n;j++)`
+                                - 外层$2^{t_1}＞n$
+                                    - $log_2n$
+                                - ∴$nlog_2n$
+                - --
+            - 递归
+               - 直接有n-1
+                    - step：
+                        - ①写递归关系T(n)与T(n-1)
+                        - ②将T(n-1)按照表达式逻辑替换
+                            - 直至拆到T(1)
+                    - eg. `int fact(int n) {
+                            if (n <= 1) return 1;
+                            return n * fact(n-1); // 基本操作
+                            }`
+                        - ①T(n)=T(n-1)+1← "+1": 1乘法操作
+                        - ②T(n)=T(n-2)+1+1
+                           -  =T(n-(n-1))+n-1=T(1)+n-1
+                           -  =1+n-1=n
+                - 无
+                    - 视为多重循环
+                    - 将"return 1"视为基本语句
+                    - 设 递归次数为t，列约束式
+                        - ？这道题的$2^t≤n$是哪里来的
+                        - ![IMG_20250922_153849](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20250922_153849.7axj5v88ll.jpg)
+                        - ![IMG_20250922_153554](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20250922_153554.8l0gc6q7yz.jpg)
+            - --
+            - 有条件判断(if-else)
+                - 取分支上最大
+            ---
+            - 比大小
+                - >找T(n)表达式中 关于n的最高阶
+                - default:
+                    - >1,3,5
+                    - 1＜$log_2n$＜n＜$nlog_2n$＜$n^2$＜$n^3$＜$2^n$＜$n!$＜$n^n$
+         ---
+    - 空间
+        - >是否申请了 辅助空间 related to **n**
+        - 常见：
+            - $O(1)$
+                - 常数个 variation
+                - 与 问题规模n无关
+                    - "原地工作"
+            - $O(n)$
+                - 申请1维数组
+                - or 递归深度为n
+            - $O(n^2)$
+                -..2维
+     
+---
+# 线性表
+- base operation
+    - define
+        - >相同数据类型、**有限**++序列++
+            - 须有前后驱关系
+                - ↑集合无，序列才有
+- 顺序表
+- 链表
+    - type
+        - 单
+        - 双
+        - 循环
+# 栈 队列 数组
+- 栈
+    - type
+        - 顺序栈
+        - 链栈
+- 队列
+    - type
+        - 顺序(循环)
+        - 链式
+        - 双端
+- 数组
+    - 数组
+    - 矩阵
+# (字符)串
+- concept
+    - 存储
+        - type
+            - 堆
+            - 块链
+    - 操作
+- --
+- 模式匹配
+    - 简单..
+    - KMP
+        - base
+        - 优化
+# 图
+- concept
+- base operation
+- 遍历
+    - type
+        - 广度优先
+        - 深度..
+- apply
+    - MST
+    - 最短path
+    - topology排序
+    - 关键path
+---
+left
+术语 评价综合
+- 递归10
+    - 单循环15←怎么用公式，是4次根号
+    - 双循环16，累加是2倍等差还能合并吗？
+    - ![Screenshot_2025-09-22-15-56-52-817_com](https://bluejedis.github.io/picx-images-hosting/ds/Screenshot_2025-09-22-15-56-52-817_com.microsoft.emmx.canary-edit.5q7s6klliz.jpg)
