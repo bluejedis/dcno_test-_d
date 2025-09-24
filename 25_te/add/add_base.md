@@ -1,0 +1,77 @@
+# 线性表
+- base operation
+    - define
+    - 参数
+        - whether need 被改动 in函数内
+            - Y
+                - 传递 指针(指向parameter
+            - N
+                - 直接传递
+    - --
+- 顺序表
+    - >数组实现
+        - ![Screenshot_2025-09-24-18-51-40-459_com](https://bluejedis.github.io/picx-images-hosting/ds/Screenshot_2025-09-24-18-51-40-459_com.microsoft.emmx.canary-edit.6m49owjst9.jpg)
+    - base
+        - 3base属性
+            - 起始位置
+            - 数组length(存储空间)
+            - 线性表..
+                - ≤数组..
+        - code
+        - 地址
+            - >every 存储单元'编号
+            - 随机存取结构
+                - >$\Omicron (1)$
+                - any时间 存/取结构 相同
+                - 顺序表中：
+                    - 第 i+1个数据元素 存储结构 & 第i个..
+                        - $LOC(a_{i+1})=LOC(a_i)+c$
+                            - ↑LOC取地址function
+                    - 由$a_1$推算$a_i$
+                        - $LOC(a_i)=LOC(a_1)+{i-1}*c$
+                        - ![IMG_20250924_185839](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20250924_185839.32ibz3h2yk.jpg)
+        - --
+    - operation
+- 链表
+    - type
+        - 单
+        - 双
+        - 循环
+# 栈 队列 数组
+- 栈
+    - type
+        - 顺序栈
+        - 链栈
+- 队列
+    - type
+        - 顺序(循环)
+        - 链式
+        - 双端
+- 数组
+    - 数组
+    - 矩阵
+# (字符)串
+- concept
+    - 存储
+        - type
+            - 堆
+            - 块链
+    - 操作
+- --
+- 模式匹配
+    - 简单..
+    - KMP
+        - base
+        - 优化
+# 图
+- concept
+- base operation
+- 遍历
+    - type
+        - 广度优先
+        - 深度..
+- apply
+    - MST
+    - 最短path
+    - topology排序
+    - 关键path
