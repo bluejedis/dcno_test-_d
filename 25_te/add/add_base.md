@@ -11,17 +11,36 @@
 - 顺序表
     - >数组实现
         - ![Screenshot_2025-09-24-18-51-40-459_com](https://bluejedis.github.io/picx-images-hosting/ds/Screenshot_2025-09-24-18-51-40-459_com.microsoft.emmx.canary-edit.6m49owjst9.jpg)
+        - discern
+            - 数组
+                - 一维数组，元素can不连续存放
+                - 表示
+                    - 栈、队列、树etc
     - base
         - 3base属性
             - 起始位置
             - 数组length(存储空间)
+                - range: [1,n+1]
+                    - <span style="color:lightgray">?线性表元素的序号是从1开始,而在第n+1个位置插入相当于在表尾追加。←不是从0吗？</span>
             - 线性表..
                 - ≤数组..
         - code
         - 地址
             - >every 存储单元'编号
-            - 随机存取结构
+            - **随机存取**结构
                 - >$\Omicron (1)$
+                    - <span style="color:lightgray">存取第i个元素&其前驱和后继元素的值</span>
+                    - discern：
+                        - 链表：从头结点 顺序查找
+                            - $O(n)$
+                        - only 顺序表 
+                            - can 按序号随机
+                            - exchange2元素位置效率更高
+                                - 3次
+                                - 链表need
+                                    - 分别找前驱
+                                    - 第4位 断链
+                                    - 插入第2位之后
                 - any时间 存/取结构 相同
                 - 顺序表中：
                     - 第 i+1个数据元素 存储结构 & 第i个..
@@ -32,37 +51,356 @@
                         - ![IMG_20250924_185839](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20250924_185839.32ibz3h2yk.jpg)
         - --
     - operation
+        - 获得GetElem
+            - >将i-1下标的值 返回
+                - status
+                    - ↑函数
+                        - 值is 结果的状态代码
+                            - `*e=L.data[i-1];`
+                                - 改为*e=L->data[i-1]
+                                - 返回 真正的数据值
+                            - `return OK;`
+        - 插入ListInsert
+            - >将要变的初始化为指针
+                - status ListInsert(*L,int i,e)
+            - step：
+                - 排除error
+                    - 表满
+                        - if (L->length=MAXSIZE)
+                    - 下标i，＜第一位置，＞最后位置
+                        - if (i＜1 || i＞L→Length+1)
+                - 移动
+                    - 要插入位置后的元素 all后移
+                    - 从后往前
+                        - for (k=L->lengtha-1;k>=i-1;k--)
+                            - L->data[k+1]=L->data[k]
+                - 插入
+                    - 在空出位置插入
+                        - L->data[i-1]=e
+                    - 总长+1
+                        - L->length++
+        - 删除ListDelet
+            - step
+                - 排除error
+                    - 表为空
+                        - if (L->length==0)
+                    - ＜第一，＞最后
+                - 取出要删除元素
+                    - *e=L->data[i-1];
+                - 移动
+                    - 从前往后
+                        - for(k=i;k<=L->length;k++)
+                        - L->data[k-1]=L->data[k];
+                - (总长-1
+                    - L->length--
+            ---
+        - insert和dalete的复杂度
+            - 最好$\Omicron (0)$
+            - 最坏$\Omicron(n)$
+                - $n-i+1$?怎么来的
+            - 平均$\frac{n-1}{2}$
+                - 第i个位置, 都需要移动n-i
+        - 优缺点
+            - 优
+                - 无需额外存储space
+            - 缺
+                - 移动大量元素
+- --
 - 链表
-    - type
+    - base
+        - >结点间：可连续,可不
+            - 结点内必须
+        - element
+            - node
+                - 数据域
+                - 指针域 (store后继info
+                    - info: 指针/链
+            - 头node
+                - store头指针
+                    - >指向第一个node存储位置
+                    - 头指针一定不为空;
+                        - 头结点非必须
+                        - ![Screenshot_2025-09-25-09-31-18-407_com](https://bluejedis.github.io/picx-images-hosting/ds/Screenshot_2025-09-25-09-31-18-407_com.microsoft.emmx.canary-edit.6m49prs8l7.jpg)
+                    - ![Screenshot_2025-09-25-09-31-48-774_com](https://bluejedis.github.io/picx-images-hosting/ds/Screenshot_2025-09-25-09-31-48-774_com.microsoft.emmx.canary-edit.54y4o0o3t1.jpg)
+        - 存储结构code
+            - 单
+                - ![Screenshot_2025-09-25-09-37-19-656_com](https://bluejedis.github.io/picx-images-hosting/ds/Screenshot_2025-09-25-09-37-19-656_com.microsoft.emmx.canary-edit.26lukilnwe.jpg)
+                - 
+        ---
+    -  type
         - 单
+            - define
+                - type
+                    - 带头node
+                        - >方便**运算**实现
+                        - 判空
+                            - `head->next==null`
+                                - next域..
+                    - 不带..
+                        - 判空
+                            - `head==null`
+                                - head直接指向1st 元素node
+                - code
+            - operation
+                - element
+                    - 判空
+                    - 插入
+                        - 长度为n的接在m后
+                            - $O(m)$
+                                - (n与m内部 本就有序
+                    - 删除
+                        - delet 尾pointer
+                            - >复杂度与表长有关
+                                - need从头find其前驱
+                - 整表
+                    - 创建
+                        - type
+                            - 头插
+                                - >数组a后面'elements, 插入到链表L最前端
+                                    - 2者 次序相反
+                            - 尾插
+                        - 复杂度
+                            - worst
+                                - 先establish链表，再排序
+                                    - $O(n^2)$
+                                        - 每个element每次都need遍历 sum存储空间
+                            -  best
+                                - 先排序，再链表
+                                    - $O(nlog_2n)$
+                                        - if-else取分支上最大
+                                            - 数组排序best$O(nlog_2n)$
+                                            - 建表$O(n)$
+                    - 删除
+            - --
         - 双
+            - >2个指针
+                - element
+                    - prior：point to直接前驱
+                    - next: ..后继
+                - 前后node访问更灵活
+            - operation
+                - 插入
+                - 删除
+                    - >保证不断链; link前后2结点
+                        - p->prior->next = p->next
+                            - ↑前一个node的后继=p的后继
+                        - p->next->prior = p->prior
+                            - ↑后..前驱 =..前驱
+                    - $O(1)$
         - 循环
+            - 单..
+                - 带头..
+                    - >last指针 point to 头结点
+                        - 不存在 空指针
+                        - can represent队列
+                            - >表头delete; 表尾insert
+                                - 复杂度皆$O(1)$
+                    - 判空
+                        - L->next=L
+                            - 指针域 与 L的值相等
+                            - or表示为
+                                - head->next=head
+                                    - 可能为空/1' situation
+                                        - head->next->next=head
+                            - 插入时判空
+                                - if(p==q)
+                                    - p=h
+                                    - <span style="color:lightgray">p为尾,q为临时
+                    - 两表相接
+                        - 为$O(1)$
+                            - 各自指向尾结点
+                            - ↑未指明先后
+                - **不带**..
+                    - delete首元 复杂度$O(n)$
+                        - ↑保证循环性must have **前驱**
+                            - 遍历find **尾结点**
+                                - ↑if有尾指针，则有前驱，process为$O(1)$
+                                - <span style="color:lightgray">链栈同理</span>
+            - 双..
+                - 带头node..
+                    - >insert/==delete尾指针== fastest
+                        - 头'prior指向 表尾
+                    - 判空
+                        - prior、next均指向 L自己
+                - 不带
+                - O(1)
+            - --
+        - 静态
+            - >数组表示
+                - need 较大存储空间
+                    - fixed: 一次性申请
+                - still链表
+                    - 查找still need按序
+  ---
 # 栈 队列 数组
 - 栈
     - type
         - 顺序栈
+            - define
+            - operation
+                - init
+                - judge空
+                - ==进==
+                    - type
+                        - 数组a[n]
+                            - 栈顶指针top=-1
+                        - ..a[1...n]
+                            - ..=1
+                            - ..=n+1
+                            ---
+                        - discern: ++x,x++
+                            - >谁前，先算谁
+                            - ++x
+                                - >先+，再用
+                            - x++
+                                - >..用，..+
+                                
+                - 出
+                    - 出栈序列数
+                        - >n个元素push
+                            - $\frac{1}{n+1}C_{2n}^n$
+                                - $C_m^n$
+                                    - =$\frac{A_m^n}{A_n^n}$
+                                    - ↑去除n内部排序'影响
+                    - 第几个
+                        - order
+                            - 1,...,n
+                                - 第一个输出is n
+                                    - 第i个：n-i+1
+                                - ... i
+                                    - 第j个：不确定
+                                - p_2=3
+                                    - p_1可能取的数
+                                        - 排1、2、4特殊值
+                                            - 令P_1=1、2、4
+                                                - 皆可，则不为3即可
+                        - can作 c语言标识符'序列
+                            - >英文字母 or 下划线"_"
+
+                - read栈
         - 链栈
+            - define
+                - >**动态分配**存储空间→usually 不会栈满
+                    - ↑明显优势
+            - operation
+                - 插入
+                    - 带头
+                    - 不带..
+                        - x->next=top; top=x
+                - push
+                    - 依次
+                        -  a,b,c,d,e f
+                            - 按次序 is **从左到右**'次序
+                        - a,b,c,d
+                            - 以c,d开头，only 1种可能
+                            
+                -  pop
+                    - 不带头
+                        - >将element存于x中
+                            - 先存，后换
+                            - x= top->data
+                            - top =top->next
+            - --
+        - 共享栈
+            - >save存储空间，降低发生上溢'possibility
+                - 上溢：
+                    - 满，still入
+                - 下.. :
+                    - 空，...读
+            - ？判断栈满
+                - 初始值不同，情况不一样←25题？
+                    - top1-top0=1
+        - --
+    - compare
+        - 与 队列
+            - >same存储结构
+- --
+- left
+    - 进栈4、5、6
+    - 判满25
+- --
 - 队列
+    - >尾入，头出
     - type
-        - 顺序(循环)
+        - 顺序
+        - 循环
+        - --
         - 链式
         - 双端
 - 数组
     - 数组
     - 矩阵
 # (字符)串
+>0个/多个 字符组成的有限序列
 - concept
+    - base
+        - 比大小
+            - 2个串不等时
+                - 前k-1位，=
+                - 比较k位' ASCII码
     - 存储
         - type
+            - 定长顺序
+                - >连续存储单元
+                    - 存储区length：固定
             - 堆
+                - >连续存储单元
+                    - 动态分配
             - 块链
+                - >链表
+                    - 结点称为块
     - 操作
+        - >more关注：子串
+        - list：
+        - 最小操作子集
+            - <span style="color:lightgray">5</span>
+                - str
+                    - Assign
+                    - Compare
+                    - Length
+                - Contact
+                - SubString
 - --
 - 模式匹配
+    - >子串的定位
     - 简单..
+        - >定长顺序存储
+            - 暴力match：2个串：主串S 和 模式串T
+        - step
+            - 从1st 字符 开始比较
+                - if ==
+                    - 继续逐字
+                - else
+                    - 2rd开始
+            - return
+                - 序号 of T在S中的 首字符 
+                    - ↑成功
+                - 0
+                    - ↑失败
+
+        - --
     - KMP
         - base
+            - >analyze 模式串T structure<span style="color:lightgray">←部分匹配值PMV</span>
+                - utilize已匹配prefix 滑动<span style="color:lightgray">← 已知后面elements have相等/匹配过</span>
+                - 主串指针 不用回退
+            - --
+            - step
+                - >移动位数=已匹配symbol数 - PMV
+                    - PMV:
+                        - 部分匹配值
+                            - 前缀∩后缀
+            - --
+            - ==next数组==
+                - >PM表右移一位
+                    - 首位 填充-1
+                        - 舍origin最后一位
+                    - 整体+1
+            ---
         - 优化
+            - >递归
+
+---
 # 图
 - concept
 - base operation
@@ -75,3 +413,20 @@
     - 最短path
     - topology排序
     - 关键path
+- --
+- 结构体中->和.操作的区别
+    - 变量本身use"."
+    - 指针use"->"
+
+- 注意表述是 局部or整体
+    - 线性表include 顺序&链式
+
+- left 
+    - 双链表
+        - 插入、删除：15、16、17 ？35具体过程✓ ←整理一下不变的
+            - p后的结点q
+            - p指向的结点
+            - p后插入指针s的结点
+                - ？?s->prev = s->next->prev
+        - 33题想考什么？
+            - 如何理解逻辑位 和 连接地址？
