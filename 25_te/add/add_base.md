@@ -248,13 +248,19 @@
                             - ..=1
                             - ..=n+1
                             ---
-                        - discern: ++x,x++
+                        - discern: `++x`,`x++`
                             - >谁前，先算谁
-                            - ++x
+                            - `++x`
                                 - >先+，再用
-                            - x++
+                            - `x++`
                                 - >..用，..+
                                 
+                - push
+                    - 依次
+                        -  a,b,c,d,e f
+                            - 按次序 is **从左到右**'次序
+                        - a,b,c,d
+                            - 以c,d开头，only 1种可能
                 - 出
                     - 出栈序列数
                         - >n个元素push
@@ -278,6 +284,7 @@
                             - >英文字母 or 下划线"_"
 
                 - read栈
+            - --
         - 链栈
             - define
                 - >**动态分配**存储空间→usually 不会栈满
@@ -286,13 +293,7 @@
                 - 插入
                     - 带头
                     - 不带..
-                        - x->next=top; top=x
-                - push
-                    - 依次
-                        -  a,b,c,d,e f
-                            - 按次序 is **从左到右**'次序
-                        - a,b,c,d
-                            - 以c,d开头，only 1种可能
+                        - x->next=top; top=x   
                             
                 -  pop
                     - 不带头
@@ -321,15 +322,97 @@
 - --
 - 队列
     - >尾入，头出
+        - 先进先出
     - type
         - 顺序
         - 循环
+            - >解决假溢出
+            - 入栈
+                - front..
+                - `rear=(rear+1) mod Maxsize`
+                    - eg.数组[0...n]
+                        - maxsize: n+1
+                            - discern: A[n]
+                                - 下标range: [0,n-1]
+            - 队列长度
+                - (rear-front+maxsize) % maxsize
+                    - =(rear-front+21)%21=16
+                    - ↑？(8-3+21)%21 为什么是16
+                - --
+            - 判
+                - 空
+                    - >充分非必要
+                        - 队列为空时，不一定首尾 指针相等
+                            - ？对的吧
+                            - eg.初始时Q空
+                                - 且要求第一个进入队列的元素存储在A[0]处
+                                - 则初始时：front:0, rear: n-1
+                    - `Q.rear=Q.front`
+                        - ?"front指向队首元素的前一位置"←指针位置不影响吗？
+                - 满
+                    - (Q.rear+1)%maxsize=Q.front
         - --
         - 链式
+            - >动态分配
+                - can't由首尾指针count长度
+                    - ？为什么
+                - 链表type
+                    - >链头as 队头
+                        - suite for删除
+                            - usually only修改头指针
+                            - special：
+                                - Q only一个元素
+                                    - 队列为空
+                                    - 还需rear=front
+                    - best：
+                        - with首 尾结点' 非循环 单链表
+                            - <span style="color:lightgray">if circle，完成进队和出队后还要修改为循环</span>
+                    - 最不适合：
+                        - only首指针' 非循环双链表
+                            - 找队尾结点需要O(n)的时间
+                                - --
+                                - only 首/尾 ' 循环双链表 || only尾' 循环单链表
+                                    - 均可在O(1)的时间内找到队首和队尾
+                                - discern
+                                    - only头' 循环单
+                                        - O(n) 找队尾
+            - - -
+            - 插入
+                - rear指向x
+                    - rear->next=x
+                - x处于队尾，next为空
+                    - x->next=NULL
+                - 尾指针+"1"
+                    - rear=x
         - 双端
+            - >2端都可 插入删除
+            - 受限..
+                - 输入..
+                    - >一端can插入删除，一端only删除
+                - 输出..
+                    - >..，..插入
+                - --
+            - 序列judge
+                - 首尾both might出
+                    - 中can't
+                        - ↑**输出受限**might
+                            - eg.1234
+                                - 右左右左
+                                - 输出：4 2 1 3
+                            - skill: 抓前2个 紧邻←only 输出limit能use
+                    - --
+                - combine with 栈
+                    - ？解题思路是什么
+                        - 23
+- --
+- application
+    - 栈
+    - 队列
+- --
 - 数组
     - 数组
     - 矩阵
+
 # (字符)串
 >0个/多个 字符组成的有限序列
 - concept
