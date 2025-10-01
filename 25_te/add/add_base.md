@@ -633,400 +633,212 @@ left
 ---
 # 图
 - concept
-- base operation
-- 遍历
-    - type
-        - 广度优先
-        - 深度..
-- apply
-    - MST
-    - 最短path
-    - topology排序
-    - 关键path
-- --
-- 结构体中->和.操作的区别
-    - 变量本身use"."
-    - 指针use"->"
+    - base type
+        - 图
+            - 向
+                - 有向
+                    - >弧=边
+                - 无向
+                    - >无方向性
+                        - every边，对于一个顶点，既as入度also出度
+                            - ∴ 无向图中 入度=出度 
 
-- 注意表述是 局部or整体
-    - 线性表include 顺序&链式
-
-- left 
-    - 双链表
-        - 插入、删除：15、16、17 ？35具体过程✓ ←整理一下不变的
-            - p后的结点q
-            - p指向的结点
-            - p后插入指针s的结点
-                - ？?s->prev = s->next->prev
-        - 33题想考什么？
-            - 如何理解逻辑位 和 连接地址？
-                    - ![Screenshot_2025-09-25-09-31-48-774_com](https://bluejedis.github.io/picx-images-hosting/ds/Screenshot_2025-09-25-09-31-48-774_com.microsoft.emmx.canary-edit.54y4o0o3t1.jpg)
-        - 存储结构code
-            - 单
-                - ![Screenshot_2025-09-25-09-37-19-656_com](https://bluejedis.github.io/picx-images-hosting/ds/Screenshot_2025-09-25-09-37-19-656_com.microsoft.emmx.canary-edit.26lukilnwe.jpg)
-                - 
-        ---
-    -  type
-        - 单
-            - define
-                - type
-                    - 带头node
-                        - >方便**运算**实现
-                        - 判空
-                            - `head->next==null`
-                                - next域..
-                    - 不带..
-                        - 判空
-                            - `head==null`
-                                - head直接指向1st 元素node
-                - code
-            - operation
-                - element
-                    - 判空
-                    - 插入
-                        - 长度为n的接在m后
-                            - $O(m)$
-                                - (n与m内部 本就有序
-                    - 删除
-                        - delet 尾pointer
-                            - >复杂度与表长有关
-                                - need从头find其前驱
-                - 整表
-                    - 创建
-                        - type
-                            - 头插
-                                - >数组a后面'elements, 插入到链表L最前端
-                                    - 2者 次序相反
-                            - 尾插
-                        - 复杂度
-                            - worst
-                                - 先establish链表，再排序
-                                    - $O(n^2)$
-                                        - 每个element每次都need遍历 sum存储空间
-                            -  best
-                                - 先排序，再链表
-                                    - $O(nlog_2n)$
-                                        - if-else取分支上最大
-                                            - 数组排序best$O(nlog_2n)$
-                                            - 建表$O(n)$
-                    - 删除
-            - --
-        - 双
-            - >2个指针
-                - element
-                    - prior：point to直接前驱
-                    - next: ..后继
-                - 前后node访问更灵活
-            - operation
-                - 插入
-                - 删除
-                    - >保证不断链; link前后2结点
-                        - p->prior->next = p->next
-                            - ↑前一个node的后继=p的后继
-                        - p->next->prior = p->prior
-                            - ↑后..前驱 =..前驱
-                    - $O(1)$
-        - 循环
-            - 单..
-                - 带头..
-                    - >last指针 point to 头结点
-                        - 不存在 空指针
-                        - can represent队列
-                            - >表头delete; 表尾insert
-                                - 复杂度皆$O(1)$
-                    - 判空
-                        - L->next=L
-                            - 指针域 与 L的值相等
-                            - or表示为
-                                - head->next=head
-                                    - 可能为空/1' situation
-                                        - head->next->next=head
-                            - 插入时判空
-                                - if(p==q)
-                                    - p=h
-                                    - <span style="color:lightgray">p为尾,q为临时
-                    - 两表相接
-                        - 为$O(1)$
-                            - 各自指向尾结点
-                            - ↑未指明先后
-                - **不带**..
-                    - delete首元 复杂度$O(n)$
-                        - ↑保证循环性must have **前驱**
-                            - 遍历find **尾结点**
-                                - ↑if有尾指针，则有前驱，process为$O(1)$
-                                - <span style="color:lightgray">链栈同理</span>
-            - 双..
-                - 带头node..
-                    - >insert/==delete尾指针== fastest
-                        - 头'prior指向 表尾
-                    - 判空
-                        - prior、next均指向 L自己
-                - 不带
-                - O(1)
-            - --
-        - 静态
-            - >数组表示
-                - need 较大存储空间
-                    - fixed: 一次性申请
-                - still链表
-                    - 查找still need按序
-  ---
-# 栈 队列 数组
-- 栈
-    - type
-        - 顺序栈
-            - define
-            - operation
-                - init
-                - judge空
-                - ==进==
-                    - type
-                        - 数组a[n]
-                            - 栈顶指针top=-1
-                        - ..a[1...n]
-                            - ..=1
-                            - ..=n+1
-                            ---
-                        - discern: `++x`,`x++`
-                            - >谁前，先算谁
-                            - `++x`
-                                - >先+，再用
-                            - `x++`
-                                - >..用，..+
-                                
-                - push
-                    - 依次
-                        -  a,b,c,d,e f
-                            - 按次序 is **从左到右**'次序
-                        - a,b,c,d
-                            - 以c,d开头，only 1种可能
-                - 出
-                    - 出栈序列数
-                        - >n个元素push
-                            - $\frac{1}{n+1}C_{2n}^n$
-                                - $C_m^n$
-                                    - =$\frac{A_m^n}{A_n^n}$
-                                    - ↑去除n内部排序'影响
-                    - 第几个
-                        - order
-                            - 1,...,n
-                                - 第一个输出is n
-                                    - 第i个：n-i+1
-                                - ... i
-                                    - 第j个：不确定
-                                - p_2=3
-                                    - p_1可能取的数
-                                        - 排1、2、4特殊值
-                                            - 令P_1=1、2、4
-                                                - 皆可，则不为3即可
-                        - can作 c语言标识符'序列
-                            - >英文字母 or 下划线"_"
-
-                - read栈
-            - --
-        - 链栈
-            - define
-                - >**动态分配**存储空间→usually 不会栈满
-                    - ↑明显优势
-            - operation
-                - 插入
-                    - 带头
-                    - 不带..
-                        - x->next=top; top=x   
-                            
-                -  pop
-                    - 不带头
-                        - >将element存于x中
-                            - 先存，后换
-                            - x= top->data
-                            - top =top->next
-            - --
-        - 共享栈
-            - >save存储空间，降低发生上溢'possibility
-                - 上溢：
-                    - 满，still入
-                - 下.. :
-                    - 空，...读
-            - ？判断栈满
-                - 初始值不同，情况不一样←25题？
-                    - top1-top0=1
-        - --
-    - compare
-        - 与 队列
-            - >same存储结构
-- --
-- left
-    - 进栈4、5、6
-    - 判满25
-- --
-- 队列
-    - >尾入，头出
-        - 先进先出
-    - type
-        - 顺序
-        - 循环
-            - >解决假溢出
-            - 入栈
-                - front..
-                - `rear=(rear+1) mod Maxsize`
-                    - eg.数组[0...n]
-                        - maxsize: n+1
-                            - discern: A[n]
-                                - 下标range: [0,n-1]
-            - 队列长度
-                - (rear-front+maxsize) % maxsize
-                    - =(rear-front+21)%21=16
-                    - ↑？(8-3+21)%21 为什么是16
                 - --
-            - 判
-                - 空
-                    - >充分非必要
-                        - 队列为空时，不一定首尾 指针相等
-                            - ？对的吧
-                            - eg.初始时Q空
-                                - 且要求第一个进入队列的元素存储在A[0]处
-                                - 则初始时：front:0, rear: n-1
-                    - `Q.rear=Q.front`
-                        - ?"front指向队首元素的前一位置"←指针位置不影响吗？
-                - 满
-                    - (Q.rear+1)%maxsize=Q.front
-        - --
-        - 链式
-            - >动态分配
-                - can't由首尾指针count长度
-                    - ？为什么
-                - 链表type
-                    - >链头as 队头
-                        - suite for删除
-                            - usually only修改头指针
-                            - special：
-                                - Q only一个元素
-                                    - 队列为空
-                                    - 还需rear=front
-                    - best：
-                        - with首 尾结点' 非循环 单链表
-                            - <span style="color:lightgray">if circle，完成进队和出队后还要修改为循环</span>
-                    - 最不适合：
-                        - only首指针' 非循环双链表
-                            - 找队尾结点需要O(n)的时间
-                                - --
-                                - only 首/尾 ' 循环双链表 || only尾' 循环单链表
-                                    - 均可在O(1)的时间内找到队首和队尾
-                                - discern
-                                    - only头' 循环单
-                                        - O(n) 找队尾
-            - - -
-            - 插入
-                - rear指向x
-                    - rear->next=x
-                - x处于队尾，next为空
-                    - x->next=NULL
-                - 尾指针+"1"
-                    - rear=x
-        - 双端
-            - >2端都可 插入删除
-            - 受限..
-                - 输入..
-                    - >一端can插入删除，一端only删除
-                - 输出..
-                    - >..，..插入
-                - --
-            - 序列judge
-                - 首尾both might出
-                    - 中can't
-                        - ↑**输出受限**might
-                            - eg.1234
-                                - 右左右左
-                                - 输出：4 2 1 3
-                            - skill: 抓前2个 紧邻←only 输出limit能use
+            - **完全**
+                - 无向完全图
+                    - >∀ 2vertex have边
+                    - $\frac{n(n-1)}{2}$
+                - 有向完全graph
+                    - >2方向相反'弧 in any 2 vertex
+                        - 一定 强连通graph
+                            - 各vertex 有path
+                                - 不一定有 弧/边<span style="color:lightgray"> (←不一定相邻
+                    - $n(n-1)$
+            - 子图
+                - not any V、E子集 all can构成子集
+                    - eg.顶点of E子集中的关联边 
+                        - 不在V子集中
+        - **连通**
+            - 连通
+                - >any顶点间 have **path**存在
+                    - not 边
+                        - ↑与 "完全" 区分开
+                            - "通"is路
+                            - "完全"is"弧"
+                - 连通
+                    - >无向图
+                        - 边
+                            - 至少
+                                - 树: n-1
+                                - ![IMG_20251001_162542](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20251001_162542.41yfm46dlc.jpg)
+                            - 确保
+                                - n-1个顶点(**完全**)+1边(link独立vertex
+                                    - eg.6vertex
+                                        - $\frac{5(5-1)}{2}$ +1边
+                - 非连通
+                    - 无向图
+                        - 已知边 求vertex
+                            - 1**完全**无向图+独立顶点
+                            - eg.28边
+                                - E全部来自 完全无向图
+                                - $\frac{n(n-1)}{2}=28$
+                                    - 再+1顶点
+            - 强连通
+                - >有向图
+                - 边至少
+                    - 环：n
+                    - ![IMG_20251001_162505](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20251001_162505.1vz10cevs0.jpg)
+            - --
+            - (强)连通**分量**
+                - count:
+                    - >可以有多个
+                    - 连通中 取极大
+                    - 独立顶点(or only入/出度)单独as 分量
+                        - <span style="color:lightgray">↑understand，就自身而言，已是极大</span>
+                        - eg.无向
+                            - [见下](#section1)
+                        - eg.有向
+                            - ![image](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/image.5fkyq7gjo8.png)
+                            - 连通中 找极大
+                                - ACDE
+                            - 非连通 顶点单独as
+                                - B
+            - --
+        - 生成<span style="color:lightgreen">树</span>
+            - >极min**连通**子图 ←边数least
+                - n个顶点
+                    - n-1条边
+                        - ∴n个顶点，n条边，must 环
+                            - ↑n个顶点，n条边
+                                - n课生成树<span style="color:lightgray">(举特例4</span>
+                - 无环子图
+                    - $V'=V$
                     - --
-                - combine with 栈
-                    - ？解题思路是什么
-                        - 23
+                - discern：
+                    - 连通分量
+                        - **极**max连通子图 ←顶点边数 as many as possible
+                            - 连通图 即itself
+                                - 非.. 找极大
+                                    <a id="section1"></a>
+                                    - eg.51个v，21 E，连通分量最多为
+                                        - >是极值不是最值
+                                        - 21边对应v 构成完全图
+                                            - $\frac{6*7}{2}$
+                                            - 7顶点
+                                        - 剩下51-7=44个顶点 对应44个连通分量
+                                    - --
+                                    - 生成森林
+                                        - >consist of 连通分量 in 连通树
+                                        - count
+                                            - 森林中的树
+                                                - >key：边数+1=顶点树
+                                                    - ∴ 连接各树根结点as一棵树
+                                                - n个顶点，e条边
+                                                    - 设树 数量x
+                                                    - e+(x-1)+1=n
+                                            
+        - element
+            - 度
+                - 无向graph
+                    - >边的条数of vertex 对应的
+                        - 和 of all vertex度or边数=2*vertex数
+                            - ↑∴所有顶点的度之和为偶数
+                - 有向
+                    - 入度
+                    - 出度
+                    - sum
+                        - 一个vertex' Max度
+                            - $2n-2$
+                            - ![IMG_20251001_163704](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20251001_163704.70appmt18d.jpg)
+            - 路径
+                - 由**顶点**和相邻顶点序偶  构成的**边**所形成的**序列**
+                - 
+            - 有向tree
+            - --
+        - 抽象的情况，任何时候举特例
+            - A B C
+                - 树or环
 - --
-- application
-    - 栈
-    - 队列
-- --
-- 数组
-    - 数组
-    - 矩阵
-
-# (字符)串
->0个/多个 字符组成的有限序列
-- concept
+- store(4
     - base
-        - 比大小
-            - 2个串不等时
-                - 前k-1位，=
-                - 比较k位' ASCII码
-    - 存储
-        - type
-            - 定长顺序
-                - >连续存储单元
-                    - 存储区length：固定
-            - 堆
-                - >连续存储单元
-                    - 动态分配
-            - 块链
-                - >链表
-                    - 结点称为块
-    - 操作
-        - >more关注：子串
-        - list：
-        - 最小操作子集
-            - <span style="color:lightgray">5</span>
-                - str
-                    - Assign
-                    - Compare
-                    - Length
-                - Contact
-                - SubString
-- --
-- 模式匹配
-    - >子串的定位
-    - 简单..
-        - >定长顺序存储
-            - 暴力match：2个串：主串S 和 模式串T
-        - step
-            - 从1st 字符 开始比较
-                - if ==
-                    - 继续逐字
-                - else
-                    - 2rd开始
-            - return
-                - 序号 of T在S中的 首字符 
-                    - ↑成功
-                - 0
-                    - ↑失败
-
+        - 邻接矩阵
+            - type
+                - 无向
+                    - 
+                - 有向
+                    - 度
+                        - 入度看列
+                            - $v_i$
+                                - $\Sigma_{j=1}^nA[j][i]$
+                                    - special
+                                        - 有向带权graph
+                                            - 第i列非∞且非0'元素**个数**←对角线常用0表示
+                                            - ![image](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/image.1apde5rg1z.png)
+                                - discern：
+                                    - 无向graph' 度
+                                        - >对称matrix
+                                            - 第i行/列
+                                        - $\Sigma_{j=1}^nA[j][i]/A[i][j]$
+                        - 出度看行
+                            - count弧，直接按行看出度
+                                - ！[ ]https://github.com/bluejedis/picx-images-hosting/raw/master/DS/IMG_20251001_183638.1ovt51nc24.webp
+                        - ∴sum
+                            - first judge whether对称
+                                - ![ ]https://bluejedis.github.io/picx-images-hosting/DS/IMG_20251001_191235.83af0ob432.jpg
+                            - N
+                                - 列表
+                                - ![ ]https://bluejedis.github.io/picx-images-hosting/DS/IMG_20251001_191357.77dxl81q6v.webp
+            - $A^n$
+                - >长度为n的路径数目
+                - eg.$A^2$中的某元素$a^2_{i,j}=3$
+                    - 存在 3条 长度=2的路径 (from i to j
+            - unique
+                - 主对角线上元素all0, others 1
+                    - 各vertex 皆有边相连
+                    - ↑完全图
+            - space
+                - only V有关
         - --
-    - KMP
-        - base
-            - >analyze 模式串T structure<span style="color:lightgray">←部分匹配值PMV</span>
-                - utilize已匹配prefix 滑动<span style="color:lightgray">← 已知后面elements have相等/匹配过</span>
-                - 主串指针 不用回退
-            - --
-            - step
-                - >移动位数=已匹配symbol数 - PMV
-                    - PMV:
-                        - 部分匹配值
-                            - 前缀∩后缀
-            - --
-            - ==next数组==
-                - >PM表右移一位
-                    - 首位 填充-1
-                        - 舍origin最后一位
-                    - 整体+1
-            ---
-        - 优化
-            - >递归
-
----
-# 图
-- concept
+        - 邻接表法
+            - >表示不唯一
+            - element
+                - >顶点表结点，边表结点
+                - 边表结点
+                    - 无向
+                        - >边表结点数必 偶
+                            - every边 store2次
+                                - ∴ max边表结点:$n(n-1)$
+                                    - ↑边数$\frac{n(n-1)}{2}$
+                            - 度
+                                - v_i(具体一vertex)
+                                    - 即为第i个链表的 node数
+                        - 复杂度
+                            - 空间：
+                                - $O(|V|+2|E|)$
+                                    - ↑时间复杂度ignore系数$O(|V|+|E|)$
+                    - 有向
+                        - >充分：边表结点数为奇
+                        - 度
+                            - 入度
+                                - 顶点v在**边表**中出现的次数
+                                    - need遍历all
+                                        - $O(|V|+|E|)$
+                            - **出度**
+                                - 顶点表node 对应的边表结点
+                                    - $O(V)$
+                            - ∴计算顶点总度/删除整边
+                                - need遍历all $O(|V|+|E|)$
+            - space
+                - 与V、E有关
+    - add
+        - >
+        - 十字链表
+            - >有向
+        - 邻接多重表
+            - >无向
 - base operation
 - 遍历
+    - >每个node只能被visit一次
     - type
         - 广度优先
         - 深度..
