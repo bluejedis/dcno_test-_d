@@ -840,8 +840,9 @@ left
 - 遍历
     - >每个node只能被visit一次
     - type
-        - 广度优先
-        - 深度..
+        - 广度优先BFS
+        - 
+        - 深度..DFS
 - apply
     - MST
     - 最短path
