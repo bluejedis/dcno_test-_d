@@ -690,6 +690,7 @@ left
                     - ![IMG_20251001_162505](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20251001_162505.1vz10cevs0.jpg)
             - --
             - (强)连通**分量**
+                - >极max
                 - count:
                     - >可以有多个
                     - 连通中 取极大
@@ -705,18 +706,25 @@ left
                                 - B
             - --
         - 生成<span style="color:lightgreen">树</span>
+            - 无回路
             - >极min**连通**子图 ←边数least
                 - n个顶点
                     - n-1条边
                         - ∴n个顶点，n条边，must 环
                             - ↑n个顶点，n条边
                                 - n课生成树<span style="color:lightgray">(举特例4</span>
+                        - discern：
+                            - 连通图G n个顶点
+                                - 子图: n个顶点 n-1条边
+                                    - 不一定is生成树
+                                        - ↑1个孤立点 n-1顶点和n-1边构成回路
+                                        - <span style="color:lightgray">↑n个顶点，若为完全图，有\frac{n(n-1)}{2}条边</span>
                 - 无环子图
                     - $V'=V$
                     - --
                 - discern：
                     - 连通分量
-                        - **极**max连通子图 ←顶点边数 as many as possible
+                        - **极max**连通子图 ←顶点边数 as many as possible
                             - 连通图 即itself
                                 - 非.. 找极大
                                     <a id="section1"></a>
@@ -752,19 +760,21 @@ left
                             - ![IMG_20251001_163704](https://bluejedis.github.io/picx-images-hosting/ds/IMG_20251001_163704.70appmt18d.jpg)
             - 路径
                 - 由**顶点**和相邻顶点序偶  构成的**边**所形成的**序列**
-                - 
+                - 简单path
+                    - vertex不重复
+                    - ↑回路 not
             - 有向tree
             - --
         - 抽象的情况，任何时候举特例
             - A B C
                 - 树or环
 - --
-- store(4
+- store(2 2
     - base
         - 邻接矩阵
             - type
                 - 无向
-                    - 
+                    - >对称
                 - 有向
                     - 度
                         - 入度看列
@@ -837,17 +847,267 @@ left
         - 邻接多重表
             - >无向
 - base operation
-- 遍历
+- --
+- 遍历(2
     - >每个node只能被visit一次
     - type
         - 广度优先BFS
-        - 
+            - >二叉树' 层序遍历
+            - base：
+                - 辅助data结构
+                    - queue
+                        - vertex最多 入队once
+                - 作用
+                    - >无权graph 最短路径
+                        - ∴BFS生成树≤DFS..
+            - 复杂度
+                - 邻接matrix: 
+                    - 时间: $O(n^2)$
+                - 邻接表:
+                    - 时间:$O(n+e)$
+                    - 空间: $O(n)$
         - 深度..DFS
-- apply
-    - MST
-    - 最短path
+            - >树' 先序
+            - base
+                - 序列
+                    - >不唯一
+                        - <span style="color:lightgray">由边对draw graph 最稳妥</span>
+                    - need标志位
+                        - 非回路，also有可能visit多次
+                            - ![IMG_20251002_192150](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/IMG_20251002_192150.2328xdrln8.webp)
+                                - --
+                            - 非强连通
+                                - also might一次访问完
+                                    - ![IMG_20251002_192202](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/IMG_20251002_192202.70apr85dec.webp)
+                - 向
+                    - 非连通无向graph
+                        - DFS/BFS调用数
+                            - = 连通分量数
+                        - - -
+                    -  judge whether have回路
+                        - type
+                            - 无向
+                                - 
+                            - 有向
+                                - ？left: 具体是什么逻辑(12题
+                - - -
+                - step
+                    - 
+                    - eg.
+                        - need 按栈退回
+                        - ![IMG_20251002_194448](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/IMG_20251002_194448.3uv7sb4d7k.webp)
+                        - 3：
+                            - 按栈退回
+                            - ∴ 先b , 而不能先c
+            - 复杂度
+                - ..matrix:...
+                - 邻接表：..
+
+    - 
+- --
+- apply(2 2
+    - 最小生成树 MST (2
+        - >带权无向连通
+        - >按边的权值 衡量排序
+        - base
+            - 向
+                - 无向连通
+                    - any 无向连通'MST
+                        - 1 or 多
+                    - **唯一**性
+                        - 权值
+                            - 无 权same'边 ←充要
+                            - MST唯一
+                            - discern：
+                                - have same
+                                    - 也可能唯一 (不一定不唯一
+                                    - <span style="color:lightgray">↑无向图 itself is 树</span>
+                            - --
+                        - 总**边数**
+                            - = n-1 ← MST唯一
+                                - discern:
+                                    - "n个顶点，选n-1条边"←not总数
+                            - ＜.. ← 无
+                            - ＞.. ← 多个/不唯一
+                                - 一定有权值same的边
+                                    - <span style="color:lightgray">不一定min</span>
+                        - --
+                    - MST权值
+                        - 不一定is 未选边中 smallest
+                            - ↑smallest might 不连通
+                                - ![IMG_20251002_154006](https://bluejedis.github.io/picx-images-hosting/DS/IMG_20251002_154006.8admxbpkm1.webp)
+                                - 同时避免形成环
+            - p、k
+                - get' MST
+                    - 可能same 也可能不
+                        - >代价must 相等
+                - 选边
+                    - p按顶点
+                        - 不同vertex 开始，get的MST不一定same
+                    - k avoid回路
+                - --
+                - MST不能cover 最短路径
+        - type
+            - prim
+                - >局部 min ←当前v adjacent
+                    - <span style="color:lightgray">与树T中 vertex 最近</span>
+                    - >key:抓出度、连通 till所有vertex
+                        - 无回路
+                            - step
+                                - 一条到头，return shortest(T中最近) to 剩余vertex
+                                    - 重新走
+                                    - eg.![IMG_20251002_161848](https://bluejedis.github.io/picx-images-hosting/DS/IMG_20251002_161848.lw3vg3c9f.webp)
+                    -  ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/413704bf3253c2671855c3395ee5f1027e23761bf8da66bca7df35e4ef0ebc82.jpg)  
+            ---
+            -  k
+                - >整体中 min
+                    - ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/dfb9edf9b314446b65731e53e39a987ef76f3a653992a0d176bd51f77fe01337.jpg)  
+    - - 
+    - 最短path(3
+        - >一定is 简单path
+        - >带权 (有/无 向)图
+            - discern：
+                - **BFS** only 无权graph
+                    - ↑权值=1 即无权
+        - Dij
+            - >1→others 最短**path**
+                - dist[]：记录从源点到各顶点当前最短路径长度
+                    - 初始值：
+                        - 有弧时为弧上权值
+                        - 无弧时置为∞
+            - step：
+                - 选出到各vertex' path 中 最短'path(V-S
+                    - `dist[j] = Min{dist[i]|vi∈V-S}`
+                    - ![](https://cdn-mineru.openxlab.org.cn/model-mineru/prod/9f8939ca7029cd3a8d7e5c73314b7488664116e02a550898bfbcd99d295b6878.jpg)  
+                    - ![IMG_20251002_095124](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/IMG_20251002_095124.2a5gs8zztk.webp)
+                    - attention：next应该是 距离S集合整体vertex中 最近的
+                        - 一次更新多个距离info
+                        - eg.前2次更新
+                            - ![image](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/image.b9a2f43wt.webp)
+                            - ![image](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/image.96a4cxtzrt.webp)
+                - 更新vertex集合S
+                    - till all vertex都在S中
+            - lack
+                - 不适用于 **负权**值
+                    - recorded路径need 更新
+                        - but can't
+                - also suite
+                    - 带权回路
+                    - ∀2 vertex间
+                        - $O(v^3)$
+            ---
+        -  flo
+            - >∀ 2vertex 间 path
+                - use邻接矩阵
+            - step
+                - >逐步加入 k个中间点
+                    - 更短，则**替换**
+                        - <span style="color:lightgray">↑此时，$path_{k-1}$不再是$path_{k}$子集</span>
+                    - $A^{(k)}$
+                        - $k$ : 绕行 **第** $k$ 个顶点的运算步骤
+                        - discern：
+                            - $A^n$
+                - 逐个更新矩阵
+                    - >focus出度
+                - --
+            - lack
+                - 带负权回路
+                
+        - --
+    - >有向
     - topology排序
+        - >AOV网
+            - 用有向无环图DAG express一个工程
+                - DAG
+                    - 描述表达式
+                        - 转换为二叉树--去除重复vertex→有向无环图
+                            - eg.(x+y)((x+y)/x)
+                                - ?这个是中缀直接写
+                                    - (x+y)*((x+y)/x)
+                                        - ![image](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/image.1ovt6fq4j9.webp)
+        - step
+            - 循环：
+                - 入度=0' 结点u
+                    - 输出
+                    - &删除边
+                - 新的=0 v结点 as u
+                - till AOV网 为空
+                    - 非空，则exist回路
+                        - ↑强连通 必有环，故不能topology
+                            - ↑include 顶点数＞1' 强连通分量
+        - 序列
+            - 个数
+                - list 集合分支, then sum
+                    - >始终抓 out条件: 度=0
+            - **有序**
+                - **邻接matrix** 必 三角
+                    - ↑三角matrix 必 no环
+                        - ∴三角matrix 一定有topology
+                            - 不一定唯一
+                                - (可以后续有分支
+                                - eg.![IMG_20251002_162324](https://bluejedis.github.io/picx-images-hosting/DS/IMG_20251002_162324.9o061elk2m.webp)
+                    - discern；
+                        - 去掉有序
+                            - 则 一般matrix？ why(19题
+            - 唯一
+                - can't唯一 ensure 图
+                    - eg. topology皆v1、v2、v3、v4
+                        - ![IMG_20251002_152911](https://bluejedis.github.io/picx-images-hosting/DS/IMG_20251002_152911.wixojqt4k.webp)p
+        - type：
+            - 逆拓扑排序
+                - >choose 出度=0
+                    - delete其入度
+                - =DFS退栈 return相应顶点
     - 关键path
+        - >AOE网
+            - **带权**DAG
+        - definition：
+            - 源点→汇点 **MAX**路径**长度**的路径
+                - 源/汇点
+                    - only one 入/出度=0 '开始/结束 点
+        - count
+            - 关键路径
+                - 长度
+                    - >即 最长path
+                    - 缩短
+                        - 缩短**all** 关键path 上 共有的1个 any 活动 ← or all path活动 同时short
+                            - ↑活动延迟，工期也延长
+                    - 改变
+                        - 改变....共有
+                            - 不一定产生 不同关键路径
+                                - ↑缩短might，延长一定不会
+            -  时间
+                - 最早
+                    - 该事件 正向topology
+                - 最迟
+                    - 逆向..
+                - 余量
+                    - vl(后vertex)-ve(前vertex)-weight
+                    - 关键活动
+                        - 余量=0
+            - --
+            - "活动"由 顶点/事件 算其cost
+                - 顶点/事件
+                    - 最早ve
+                        - max(源点→该vertex)
+                    - 最迟vl
+                        - $关键路径L-max(汇点→该vertex)$
+                - ==活动==
+                    - 最早
+                        - =ve(前vertex)
+                            - eg.活动d 最早：max{a,c+b}
+                    - 最迟
+                        - =vl(后vertex)- weight(itself)
+                            - eg.  活动d最迟：length-g-d
+                                - ![IMG_20251002_175044](https://bluejedis.github.io/picx-images-hosting/DS/IMG_20251002_175044.6wr3tf2ehx.webp)
+                        - --
+                    - 余量
+                        - >list顶点' 最早/迟
+                            - vl(后vertex)-ve(前vertex)- weight(itself)
+                        - eg.
+                            - ![image](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/image.9o061jsvsj.webp)
+                            - ![image](https://github.com/bluejedis/picx-images-hosting/raw/master/DS/image.9gwy646dey.webp)
+                    
 - --
 - 结构体中->和.操作的区别
     - 变量本身use"."
